@@ -42,4 +42,12 @@ git push origin <branch> - Envía los cambios al repositorio remoto en GitHub en
 Una branch o lo conocido como rama es una línea de desarrollo independiente dentro del proyecto. 
 Permite trabajar en nuevas funciones o corregir errores sin afectar a la versión 
 principal del código, pues siempre esta la main branch que es la rama principal de todo el codigo. 
-Luego se puede fusionar esa rama alterna al proyecto principal o main branch cuando esté listo todo.ñ
+Luego se puede fusionar esa rama alterna al proyecto principal o main branch cuando esté listo todo.
+
+Resumen
+
+Git es una herramienta esencial para controlar versiones de proyectos de forma ordenada, 
+permitiendo ver cambios, volver a versiones anteriores y trabajar con otros sin conflictos. 
+Sus comandos principales ayudan a organizar el flujo de trabajo, desde iniciar un proyecto 
+hasta subir cambios a plataformas como GitHub. GitHub, por su parte, es un servicio online 
+que facilita alojar proyectos Git y colaborar con otros.
