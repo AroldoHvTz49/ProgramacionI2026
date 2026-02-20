@@ -1,0 +1,45 @@
+1. ¿Qué es GIT?
+
+Git es un sistema de control de versiones distribuido que permite 
+realizar operaciones como registrar y gestionar los cambios de tus archivos y proyectos a lo 
+largo del tiempo en que estas trabajando en tu proyecto. Es mucho mas sencillo que guardar en carpetas 
+separadas cada version de tu codigo pues, Git guarda un historial detallado de cada cambio, 
+lo que facilita regresar a esas versiones anteriores, tambien permite trabajar en equipo 
+y mantener un seguimiento de quién hizo qué y cuándo lo hizo.
+
+2. ¿Cuáles son los comandos más importantes y para qué sirven?
+
+git init - Inicia un repositorio de Git de forma local en nuestra pc.
+git clone <url> - Copia un repositorio remoto a manera local en nuestra pc.
+git status - Muestra el estado actual de cada uno de los archivos.
+git add <archivo> / git add . - Agrega cambios al área de preparación de subida (staging).
+git commit -m "mensaje" - Guarda cada uno de los cambios con un mensaje escrito por nosotros.
+git log - Muestra el historial de todos los commits realizados.
+git branch - Lista o crea ramas en nuestro proyecto.
+git checkout <nombre> - Cambia a otra rama con el nombre descrito.
+git merge <nombre> - Fusiona cambios de otra rama que seleccionemos.
+git push - Sube los cambios al repositorio remoto en github.
+git pull - Trae y fusiona cambios desde el repositorio de github.
+
+3. ¿Cuál es la diferencia entre Git y GitHub?
+
+Git es el sistema de control de versiones que ejecutamos localmente en nuestra 
+computadora para llevar el registro de cada uno de los cambios en nuestros archivos.
+
+GitHub es una plataforma en línea que usa Git, pero además 
+ofrece funciones adicionales como repositorios remotos para guardar proyectos, 
+colaboración en tiempo real de otras personas, revisiones de código, issues 
+y una interfaz web para navegar proyectos de otras personas.
+
+4. Enumere los comandos para subir cambios a un repositorio
+
+git add . - Prepara los cambios realizados en el archivo local.
+git commit -m "mensaje" - Guarda esos cambios localmente con una descripcion.
+git push origin <branch> - Envía los cambios al repositorio remoto en GitHub en la rama indicada.
+
+5. ¿Qué es una branch?
+
+Una branch o lo conocido como rama es una línea de desarrollo independiente dentro del proyecto. 
+Permite trabajar en nuevas funciones o corregir errores sin afectar a la versión 
+principal del código, pues siempre esta la main branch que es la rama principal de todo el codigo. 
+Luego se puede fusionar esa rama alterna al proyecto principal o main branch cuando esté listo todo.ñ
