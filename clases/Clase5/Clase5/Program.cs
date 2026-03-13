@@ -68,9 +68,9 @@ static void Pares()
     Console.WriteLine("Ingrese un numero entero positivo: ");
     int numero = int.Parse(Console.ReadLine());
 
-    for(int i = 0; i <= numero; i++)
+    for(int i = 1; i <= numero; i++)
     {
-        if(i %2 > 0)
+        if(i % 2 > 0)
         {
             continue;
         }
@@ -94,13 +94,55 @@ static void Primos()
             break;
         }
     }
+}
 
-    for (; i == numero;)
+//Desafio 3
+static void Promedios()
+{
+    string entrada = "";
+    double suma = 0;
+    double cantidad = 0;
+
+    Console.WriteLine("Ingrese las notas del estudiante del 1 al 10");
+    Console.WriteLine("Escriba 'fin' para terminar");
+    while (entrada != "fin")
     {
-        Console.WriteLine("El numero: " + numero + " es primo");
-        break;
+        try
+        {
+            Console.WriteLine("Nota: ");
+            entrada = Console.ReadLine();
+
+            if (entrada == "fin")
+            {
+                break;
+            }
+
+            double nota = double.Parse(entrada);
+
+            if (nota >= 1 && nota <= 10)
+            {
+                suma = suma + nota;
+                cantidad++;
+            }
+            else
+            {
+                Console.WriteLine("La nota debe estar entre 1 y 10");
+            }
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("ERROR. Solo se permiten numeros o 'fin'");
+        }
+    }
+
+    if (cantidad > 0)
+    {
+        double promedio = suma / cantidad;
+        Console.WriteLine("El promedio del estudiante es: " + promedio);
+    }
+    else
+    {
+        Console.WriteLine("No se ingresaron notas");
     }
 }
 
-
-Primos();
