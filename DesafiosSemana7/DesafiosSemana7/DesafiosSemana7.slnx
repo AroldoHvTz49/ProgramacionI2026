@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Descuentos/Descuentos.csproj" />
+  <Project Path="ListaTareas/ListaTareas.csproj" />
+  <Project Path="Totito/Totito.csproj" />
+</Solution>
