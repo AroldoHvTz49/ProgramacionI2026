@@ -1,39 +1,34 @@
-﻿using EjercicioCrudClase10;
-using Dapper;
-using Npgsql; // 1. Cambiamos Microsoft.Data.Sqlite por Npgsql
+﻿using Dapper;
+using EjercicioCrudClase10;
+using Microsoft.Data.Sqlite;
 
 namespace EjercicioCrudClase10;
 
 public class BDAlumno
 {
-    // 2. Cambiamos el tipo de conexión a NpgsqlConnection
-    private readonly string _connectionString;
+    private SqliteConnection _connection;
 
-    public BDAlumno(string connectionString)
+    public BDAlumno(string archivoBD)
     {
-        _connectionString = connectionString;
+        _connection = new SqliteConnection(archivoBD);
     }
-
-    private NpgsqlConnection ObtenerConexion()
-    {
-        return new NpgsqlConnection(_connectionString);
-    }
-
     public List<Alumno> Get()
     {
         List<Alumno> alumnos = new List<Alumno>();
-        // Usando un bloque 'using' la conexión se abre y se cierra automáticamente de forma segura
-        using var connection = ObtenerConexion();
         try
         {
-            connection.Open();
-            // 3. PostgreSQL prefiere todo en minúsculas en el SQL
-            string sql = "SELECT id, carnet, nombres, apellidos, telefono, dpi FROM alumno";
-            alumnos = connection.Query<Alumno>(sql).ToList();
+            //Abrimos la conexion
+            _connection.Open();
+            string sql = "SELECT Carnet,Nombres,Apellidos,Telefono,DPI FROM Alumno";
+            alumnos = _connection.Query<Alumno>(sql).ToList();
         }
-        catch (NpgsqlException ex) // Cambiado a excepción de Postgres
+        catch (SqliteException ex)
         {
-            Console.WriteLine("Error al listar: " + ex.Message);
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            _connection.Close();
         }
         return alumnos;
     }
@@ -41,65 +36,80 @@ public class BDAlumno
     public Alumno Get(string carnet)
     {
         Alumno alumno = null;
-        using var connection = ObtenerConexion();
         try
         {
-            connection.Open();
-            string sql = "SELECT id, carnet, nombres, apellidos, telefono, dpi FROM alumno WHERE carnet = @Carnet";
-            alumno = connection.QueryFirstOrDefault<Alumno>(sql, new { Carnet = carnet });
+            //Abrimos la conexion
+            _connection.Open();
+            string sql = "SELECT Carnet,Nombres,Apellidos,Telefono,DPI FROM Alumno WHERE Carnet = @Carnet";
+            alumno = _connection.QuerySingle<Alumno>(sql, new { Carnet = carnet });
         }
-        catch (NpgsqlException ex)
+        catch (SqliteException ex)
         {
-            Console.WriteLine("Error al buscar: " + ex.Message);
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            _connection.Close();
         }
         return alumno;
     }
 
     public void Crear(Alumno alumno)
     {
-        using var connection = ObtenerConexion();
         try
         {
-            connection.Open();
-            string sql = "INSERT INTO alumno(carnet, nombres, apellidos, telefono, dpi) VALUES (@Carnet, @Nombres, @Apellidos, @Telefono, @DPI)";
-            connection.Execute(sql, alumno);
-            Console.WriteLine("El alumno ha sido creado exitosamente en Supabase.");
+            _connection.Open();
+            string sql =
+                "INSERT INTO Alumno(Carnet,Nombres,Apellidos,Telefono,DPI) VALUES (@Carnet, @Nombres,@Apellidos,@Telefono,@DPI)";
+            _connection.Execute(sql, alumno);
+            Console.WriteLine("El alumno ha sido creado");
         }
-        catch (NpgsqlException ex)
+        catch (SqliteException ex)
         {
-            Console.WriteLine("Error al crear: " + ex.Message);
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            _connection.Close();
         }
     }
 
     public void Eliminar(string carnet)
     {
-        using var connection = ObtenerConexion();
         try
         {
-            connection.Open();
-            string sql = "DELETE FROM alumno WHERE carnet = @Carnet";
-            connection.Execute(sql, new { Carnet = carnet });
-            Console.WriteLine("El alumno ha sido eliminado.");
+            _connection.Open();
+            string sql = "DELETE FROM ALUMNO WHERE Carnet = @Carnet";
+            _connection.Execute(sql, new { Carnet = carnet });
+            Console.WriteLine("El alumno ha sido eliminado");
         }
-        catch (NpgsqlException ex)
+        catch (SqliteException ex)
         {
-            Console.WriteLine("Error al eliminar: " + ex.Message);
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            _connection.Close();
         }
     }
 
     public void Update(Alumno alumno)
     {
-        using var connection = ObtenerConexion();
         try
         {
-            connection.Open();
-            string sql = "UPDATE alumno SET nombres=@Nombres, apellidos=@Apellidos, telefono=@Telefono, dpi=@DPI WHERE carnet=@Carnet";
-            connection.Execute(sql, alumno);
-            Console.WriteLine("El alumno ha sido modificado.");
+            _connection.Open();
+            string sql =
+                "UPDATE Alumno SET Nombres=@Nombres, Apellidos=@Apellidos, Telefono=@Telefono,DPI = @DPI WHERE Carnet=@Carnet";
+            _connection.Execute(sql, alumno);
+            Console.WriteLine("El alumno ha sido modificado");
         }
-        catch (NpgsqlException ex)
+        catch (SqliteException ex)
         {
-            Console.WriteLine("Error al actualizar: " + ex.Message);
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            _connection.Close();
         }
     }
 }
