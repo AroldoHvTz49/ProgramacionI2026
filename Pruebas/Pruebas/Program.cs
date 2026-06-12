@@ -1,17 +1,28 @@
+using System;
+using System.Windows.Forms;
+
 namespace Pruebas
 {
-    internal static class Program
+    static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
-        static void Main()
+        static async System.Threading.Tasks.Task Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            try
+            {
+                // Inicializa Supabase globalmente al arrancar
+                await ConexionDB.Inicializar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error crítico al conectar con la base de datos: " + ex.Message);
+            }
+
             Application.Run(new Form1());
         }
     }
 }
+

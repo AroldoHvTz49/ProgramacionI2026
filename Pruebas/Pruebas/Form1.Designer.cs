@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             btn_Click_Prueba = new Button();
             label1 = new Label();
             Nombre = new TextBox();
@@ -36,7 +37,16 @@
             Tabla_Clientes = new DataGridView();
             label3 = new Label();
             Telefono = new TextBox();
+            btn_IrProductos = new Button();
+            label4 = new Label();
+            txt_Buscar = new TextBox();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            visualizarTodoToolStripMenuItem = new ToolStripMenuItem();
+            editarToolStripMenuItem = new ToolStripMenuItem();
+            eliminarToolStripMenuItem = new ToolStripMenuItem();
+            btn_IrVentas = new Button();
             ((System.ComponentModel.ISupportInitialize)Tabla_Clientes).BeginInit();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // btn_Click_Prueba
@@ -117,11 +127,80 @@
             Telefono.TabIndex = 6;
             Telefono.Tag = "";
             // 
+            // btn_IrProductos
+            // 
+            btn_IrProductos.Location = new Point(457, 459);
+            btn_IrProductos.Name = "btn_IrProductos";
+            btn_IrProductos.Size = new Size(206, 86);
+            btn_IrProductos.TabIndex = 8;
+            btn_IrProductos.Text = "Ir a Productos";
+            btn_IrProductos.UseVisualStyleBackColor = true;
+            btn_IrProductos.Click += btn_IrProductos_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(402, 95);
+            label4.Name = "label4";
+            label4.Size = new Size(105, 20);
+            label4.TabIndex = 9;
+            label4.Text = "Buscar Cliente:";
+            // 
+            // txt_Buscar
+            // 
+            txt_Buscar.Location = new Point(504, 92);
+            txt_Buscar.Name = "txt_Buscar";
+            txt_Buscar.Size = new Size(458, 27);
+            txt_Buscar.TabIndex = 10;
+            txt_Buscar.TextChanged += txt_Buscar_TextChanged;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { visualizarTodoToolStripMenuItem, editarToolStripMenuItem, eliminarToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(180, 76);
+            // 
+            // visualizarTodoToolStripMenuItem
+            // 
+            visualizarTodoToolStripMenuItem.Name = "visualizarTodoToolStripMenuItem";
+            visualizarTodoToolStripMenuItem.Size = new Size(179, 24);
+            visualizarTodoToolStripMenuItem.Text = "Visualizar Todo";
+            visualizarTodoToolStripMenuItem.Click += visualizarTodoToolStripMenuItem_Click;
+            // 
+            // editarToolStripMenuItem
+            // 
+            editarToolStripMenuItem.Name = "editarToolStripMenuItem";
+            editarToolStripMenuItem.Size = new Size(179, 24);
+            editarToolStripMenuItem.Text = "Editar";
+            editarToolStripMenuItem.Click += editarToolStripMenuItem_Click;
+            // 
+            // eliminarToolStripMenuItem
+            // 
+            eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            eliminarToolStripMenuItem.Size = new Size(179, 24);
+            eliminarToolStripMenuItem.Text = "Eliminar";
+            eliminarToolStripMenuItem.Click += eliminarToolStripMenuItem_Click;
+            // 
+            // btn_IrVentas
+            // 
+            btn_IrVentas.Location = new Point(700, 459);
+            btn_IrVentas.Name = "btn_IrVentas";
+            btn_IrVentas.Size = new Size(206, 86);
+            btn_IrVentas.TabIndex = 11;
+            btn_IrVentas.Text = "Ir a Ventas";
+            btn_IrVentas.UseVisualStyleBackColor = true;
+            btn_IrVentas.Click += btn_IrVentas_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1138, 577);
+            Controls.Add(btn_IrVentas);
+            Controls.Add(txt_Buscar);
+            Controls.Add(label4);
+            Controls.Add(btn_IrProductos);
             Controls.Add(label3);
             Controls.Add(Telefono);
             Controls.Add(Tabla_Clientes);
@@ -132,8 +211,10 @@
             Controls.Add(btn_Click_Prueba);
             Name = "Form1";
             Text = "Form1";
+            FormClosed += Form1_FormClosed;
             Load += Form1_Load_1;
             ((System.ComponentModel.ISupportInitialize)Tabla_Clientes).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -148,5 +229,13 @@
         private DataGridView Tabla_Clientes;
         private Label label3;
         private TextBox Telefono;
+        private Button btn_IrProductos;
+        private Label label4;
+        private TextBox txt_Buscar;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem visualizarTodoToolStripMenuItem;
+        private ToolStripMenuItem editarToolStripMenuItem;
+        private ToolStripMenuItem eliminarToolStripMenuItem;
+        private Button btn_IrVentas;
     }
 }
